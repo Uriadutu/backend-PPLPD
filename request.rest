@@ -1,0 +1,137 @@
+###
+// get semua admin
+GET http://localhost:5000/admin
+Content-Type: application/json
+###
+
+// get byid admin
+GET http://localhost:5000/admin/a496d0d2-2040-4f8d-8056-cb96c4dd1ce4
+Content-Type: application/json
+
+
+### 
+//Membuat admin
+POST http://localhost:5000/admin
+Content-Type: application/json
+
+{
+    "nama": "Uria",
+    "no_hp": "083332415",
+    "username": "admin2",
+    "password" : "123456",
+    "confPassword" : "123456",
+    "role" : "Admin"
+}
+
+###
+//update admin
+PATCH http://localhost:5000/admin/19cd6f5e-f819-4e31-ae90-5b1c11f4d089
+Content-Type: application/json
+
+{
+    "nama": "Yulitasyg",
+    "no_hp": "083111111",
+    "username": "admin3",
+    "password" : "123456",
+    "confPassword" : "123456",
+    "role" : "Admin"
+
+}
+
+###
+//get semua cabor
+GET http://localhost:5000/cabor
+Content-Type: application/json
+
+###
+//buatcabor
+POST http://localhost:5000/cabor
+Content-Type: application/json
+{
+    "namaCabor": "Karate",
+    "kodeCabor": "12"
+}
+
+### 
+//Login User admin
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "admin2",
+    "password" : "123456"
+}
+
+### 
+//Login User atlet
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "uriadutu",
+    "password" : "123456"
+}
+###
+// Me
+GET http://localhost:5000/me
+
+###
+// Logout users
+DELETE http://localhost:5000/logout
+
+
+###
+// Get atlet
+GET http://localhost:5000/atlet
+Content-Type: application/json
+
+###
+//membuat atlet
+
+POST http://localhost:5000/atlet
+Content-Type: application/json
+
+{
+    
+    "name_awal" : "atlet", 
+    "nama_tengah" : "urr", 
+    "nama_akhir" : "jago", 
+    "nama_panggil" : "hay", 
+    "image" : "hah", 
+    "tgl_lahir" : "29 juni 2004", 
+    "tmp_lahir" : "todahe", 
+    "agama" : "kristen", 
+    "nama_jalan" : "wisma manggis", 
+    "desa": "balisoan", 
+    "kelurahan": "nanana", 
+    "kecamatan": "sahu", 
+    "kota": "halbar", 
+    "provinsi": "malut", 
+    "no_telp": "0822", 
+    "hp_mobile": "8909", 
+    "email": "balisoan01@gmail.com", 
+    "kelamin": "laki",
+    "gol_darah": "o", 
+    "tinggi_badan": "178",
+    "berat_badan": "45",
+    "pendidikan": "s1", 
+    "nama_sklh": "sma 3", 
+    "pend_terakhir": "sma", 
+    "alumni": "uuu", 
+    "tahun_lulus": "2021", 
+    "ukuran_baju": "45", 
+    "ukuran_sepatu": "45",
+    "nama_ortu": "rahasia", 
+    "ttl": "lupa", 
+    "jenis_kelamin": "rahasia", 
+    "hub_kel": "rahasia", 
+    "pekerjaan": "rahasia", 
+    "alamat": "rahasia", 
+    "telpOrtu": "0899", 
+    "namaClub": "ngga", 
+    "namaEvent": "lupa", 
+    "tahun": "2000", 
+    "prestasi": "makan", 
+    "password": "123456", 
+    "confPassword": "123456"
+}
