@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
+import fileupload from "express-fileupload"
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import AdminRoute from "./routes/AdminRoute.js";
@@ -10,6 +11,8 @@ import PelatihRoute from "./routes/PelatihRoute.js";
 import CaborRoute from "./routes/CaborRoute.js";
 import atletCaborRoute from "./routes/AtletcaborRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import GambarRoute from "./routes/GambarRoute.js";
+import PanduanRoute from "./routes/PanduanRoute.js"
 
 dotenv.config();
 
@@ -39,6 +42,9 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
 }));
+
+app.use(fileupload());
+app.use(express.static("public"));
 app.use(express.json());
 app.use(AdminRoute);
 app.use(AtletRoute);
@@ -46,9 +52,11 @@ app.use(PelatihRoute);
 app.use(CaborRoute);
 app.use(atletCaborRoute);
 app.use(AuthRoute);
+app.use(GambarRoute);
+app.use(PanduanRoute)
 
 // store.sync();
 
 app.listen(process.env.APP_PORT, ()=> {
-    console.log('Server Berjalan Dengan Baik');
+    console.log('Server Aman.. Semangat boleh, Istirahat jangan lupa');
 });

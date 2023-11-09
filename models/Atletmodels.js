@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Cabor from "./Cabormodels.js";
+import Gambar from "./GambarModels.js";
 
 const { DataTypes } = Sequelize;
 
@@ -8,341 +10,329 @@ const Atlet = db.define(
   {
     id_atlet: {
       type: DataTypes.STRING,
-      primaryKey : true,
+      primaryKey: true,
     },
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
-    nama : {
-      type : DataTypes.STRING,
-      allowNull:false,
-      validate : {
-        notEmpty : true,
-      }
-    },
-       name_awal: {
+    nama: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 100],
-        notEmpty: true,
-      },
+    },
+    // INI BATAS BARU
+    id_cabor: {
+      type: DataTypes.INTEGER,
+    },
+    id_gambar: {
+      type: DataTypes.INTEGER,
+    },
+
+    tahun_daftar: {
+      type: DataTypes.STRING,
+    },
+    No_daftar: {
+      type: DataTypes.STRING,
+      defaultValue: "001",
+    },
+
+    // INI LAGI
+    name_awal: {
+      type: DataTypes.STRING,
     },
     nama_tengah: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 100],
-      },
     },
     nama_akhir: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 100],
-      },
     },
 
     nama_panggil: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 100],
-      },
     },
-
-    image: DataTypes.STRING,
-
     tgl_lahir: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [3, 100],
-      },
     },
     tmp_lahir: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [3, 100],
-      },
     },
 
     agama: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [3, 100],
-      },
     },
 
     nama_jalan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     desa: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     kelurahan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     kecamatan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     kota: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     provinsi: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     no_telp: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     hp_mobile: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        isEmail: true,
-      },
     },
 
     kelamin: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     gol_darah: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     tinggi_badan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     berat_badan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
+    // pendidikan
 
     pendidikan: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
+    pend_terakhir: DataTypes.STRING,
+    alumni: DataTypes.STRING,
 
     nama_sklh: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
-
-    pend_terakhir: {
-      type: DataTypes.STRING,
-    },
-
-    alumni: {
-      type: DataTypes.STRING,
-    },
-
-    tahun_lulus: {
-      type: DataTypes.STRING,
-    },
+    alumni: DataTypes.STRING,
+    
+    tahun_lulus: DataTypes.STRING,
 
     ukuran_baju: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     ukuran_sepatu: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
 
     //data ortu
-
-    nama_ortu: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    // ayah
+    nama_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    ttl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    tmpLahir_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    jenis_kelamin: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    tglLahir_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    hub_kel: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    agama_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    pekerjaan: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    pekerjaan_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    alamat: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    noHp_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    telpOrtu: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    notlp_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    namaClub: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    email_ayah: {
+      type: DataTypes.TEXT,
     },
 
-    namaEvent: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    //data ibu
+
+    nama_ibu: {
+      type: DataTypes.TEXT,
     },
 
-    tahun: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    tmpLahir_ibu: {
+      type: DataTypes.TEXT,
     },
 
-    prestasi: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+    tglLahir_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    agama_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    pekerjaan_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    noHp_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    notlp_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    email_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    //ortu
+
+    provinsi_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    kota_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    kecamatan_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    kelurahan_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    desa_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    namaJalan_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    //wali data
+    nama_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    hubkeluarga_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    tempLahir_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    tglLahir_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    agama_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    jeniskelamin_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    pekerjaan_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    noHp_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    notlp_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    email_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    provinsi_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    kota_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    kecamatan_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    kelurahan_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    desa_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    namaJalan_wali: {
+      type: DataTypes.TEXT,
+    },
+
+    //prestasi nya
+
+    nama_club: {
+      type: DataTypes.TEXT,
+    },
+
+    nama_event: {
+      type: DataTypes.TEXT,
+    },
+
+    tahun_prestasi: {
+      type: DataTypes.TEXT,
+    },
+
+    capai_prestasi: {
+      type: DataTypes.TEXT,
     },
 
     username: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+      type: DataTypes.TEXT,
+
+      defaultValue: "123456",
     },
     role: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       defaultValue: "Atlet",
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
   },
   {
     freezeTableName: true,
   }
 );
+
+Cabor.hasMany(Atlet);
+Atlet.belongsTo(Cabor, { foreignKey: "id_cabor" });
+Gambar.hasMany(Atlet);
+Atlet.belongsTo(Gambar, { foreignKey: "id_gambar"});
+
 
 export default Atlet;

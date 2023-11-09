@@ -2,10 +2,15 @@
 // get semua admin
 GET http://localhost:5000/admin
 Content-Type: application/json
-###
 
+###
 // get byid admin
 GET http://localhost:5000/admin/a496d0d2-2040-4f8d-8056-cb96c4dd1ce4
+Content-Type: application/json
+
+###
+// hapus admin
+DELETE http://localhost:5000/admin/600fea08-2fdd-476b-9510-86d16693c0eb
 Content-Type: application/json
 
 
@@ -15,23 +20,22 @@ POST http://localhost:5000/admin
 Content-Type: application/json
 
 {
-    "nama": "Uria",
-    "no_hp": "083332415",
-    "username": "admin2",
+    "nama": "Grace",
+    "no_hp": "083909282",
+    "username": "admin6",
     "password" : "123456",
-    "confPassword" : "123456",
-    "role" : "Admin"
+    "confPassword" : "123456"
 }
 
 ###
 //update admin
-PATCH http://localhost:5000/admin/19cd6f5e-f819-4e31-ae90-5b1c11f4d089
+PATCH http://localhost:5000/admin/a781de69-04f2-4914-b933-1e43cc0eff20
 Content-Type: application/json
 
 {
-    "nama": "Yulitasyg",
+    "nama": "Ayuu Cantik",
     "no_hp": "083111111",
-    "username": "admin3",
+    "username": "admin9",
     "password" : "123456",
     "confPassword" : "123456",
     "role" : "Admin"
@@ -47,10 +51,16 @@ Content-Type: application/json
 //buatcabor
 POST http://localhost:5000/cabor
 Content-Type: application/json
+
 {
-    "namaCabor": "Karate",
-    "kodeCabor": "12"
+    "namaCabor": "Gwent Labada",
+    "kodeCabor": "16"
 }
+
+###
+//hapus cabor
+DELETE http://localhost:5000/cabor/19
+Content-Type: application/json
 
 ### 
 //Login User admin
@@ -82,22 +92,66 @@ DELETE http://localhost:5000/logout
 
 ###
 // Get atlet
-GET http://localhost:5000/atlet
+GET http://localhost:5000/atlet/1116001
 Content-Type: application/json
 
 ###
-//membuat atlet
+// Get cabor
+GET http://localhost:5000/cabor
+Content-Type: application/json
 
+###
+// Get atlet by cabor
+GET http://localhost:5000/cabor/atlet/10
+Content-Type: application/json
+
+###
+// Get atlet
+GET http://localhost:5000/atlet
+Content-Type: application/json
+
+
+###
+// Get panduan
+GET http://localhost:5000/panduan
+Content-Type: application/json
+
+
+###
+// Hapus Panduan
+DELETE  http://localhost:5000/panduan/6
+Content-Type: application/json
+
+
+###
+// Hapus Atlet
+DELETE  http://localhost:5000/atlet/d1de5ccd-f604-426e-8be9-c4c5b94af9f6
+Content-Type: application/json
+
+
+###
+//membuat atlet
+POST http://localhost:5000/atlet
+Content-Type: application/json
+
+{
+    "image" : "uria"
+
+}
+###
+//membuat atlet
 POST http://localhost:5000/atlet
 Content-Type: application/json
 
 {
     
-    "name_awal" : "atlet", 
-    "nama_tengah" : "urr", 
-    "nama_akhir" : "jago", 
-    "nama_panggil" : "hay", 
-    "image" : "hah", 
+    "name_awal" : "haha", 
+    "id_cabor" : "11", 
+    "tahun_daftar" : "2019",
+    "nama_tengah" : "hay", 
+    "nama_akhir" : "hay", 
+    
+    "nama_panggil" : "hay",
     "tgl_lahir" : "29 juni 2004", 
     "tmp_lahir" : "todahe", 
     "agama" : "kristen", 
@@ -114,24 +168,56 @@ Content-Type: application/json
     "gol_darah": "o", 
     "tinggi_badan": "178",
     "berat_badan": "45",
-    "pendidikan": "s1", 
-    "nama_sklh": "sma 3", 
-    "pend_terakhir": "sma", 
-    "alumni": "uuu", 
-    "tahun_lulus": "2021", 
-    "ukuran_baju": "45", 
-    "ukuran_sepatu": "45",
-    "nama_ortu": "rahasia", 
-    "ttl": "lupa", 
-    "jenis_kelamin": "rahasia", 
-    "hub_kel": "rahasia", 
-    "pekerjaan": "rahasia", 
-    "alamat": "rahasia", 
-    "telpOrtu": "0899", 
-    "namaClub": "ngga", 
-    "namaEvent": "lupa", 
-    "tahun": "2000", 
-    "prestasi": "makan", 
-    "password": "123456", 
-    "confPassword": "123456"
+    "pendidikan" : "aa",
+    "nama_sklh" : "a",
+    "pend_terakhir" : "c",
+    "alumni" : "c",
+    "tahun_lulus" : "cc",
+    "ukuran_baju" : "c",
+    "ukuran_sepatu" : "1",
+    "nama_ayah" : "1",
+    "tmpLahir_ayah" : "1",
+    "tglLahir_ayah" : "1",
+    "agama_ayah" : "1",
+    "pekerjaan_ayah" : "1",
+    "noHp_ayah" : "1",
+    "notlp_ayah" : "1",
+    "email_ayah" : "1",
+    "nama_ibu" : "1",
+    "tmpLahir_ibu" : "1",
+    "tglLahir_ibu" : "1",
+    "agama_ibu" : "1",
+    "pekerjaan_ibu" : "1",
+    "noHp_ibu" : "1",
+    "notlp_ibu" : "1",
+    "email_ibu" : "1",
+    "provinsi_ortu" : "1",
+    "kota_ortu" : "1",
+    "kecamatan_ortu" : "1",
+    "kelurahan_ortu" : "1",
+    "desa_ortu" : "1",
+    "namaJalan_ortu" : "1",
+    "nama_wali" : "1",
+    "hubkeluarga_wali" : "1",
+    "tempLahir_wali" : "1",
+    "tglLahir_wali" : "1",
+    "agama_wali" : "1",
+    "jeniskelamin_wali" : "1",
+    "pekerjaan_wali" : "1",
+    "noHp_wali" : "1",
+    "notlp_wali" : "1",
+    "email_wali" : "1",
+    "provinsi_wali" : "1",
+    "kota_wali" : "1",
+    "kecamatan_wali" : "1",
+    "kelurahan_wali" : "1",
+    "desa_wali" : "1",
+    "namaJalan_wali" : "1",
+    "nama_club" : "1",
+    "nama_event" : "1",
+    "tahun_prestasi" : "1",
+    "capai_prestasi" : "1",
+
+     
+    "password": "123456"
 }

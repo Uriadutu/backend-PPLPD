@@ -27,6 +27,10 @@ const Cabor = db.define (
                 len : [2, 2],
                 notEmpty : false,
             }
+        },
+        inisialCabor : {
+            type : DataTypes.STRING,
+            allowNull : false,
         }
 
     }, {

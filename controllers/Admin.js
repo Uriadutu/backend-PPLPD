@@ -1,5 +1,6 @@
 import argon2, { hash } from "argon2";
 import Admin from "../models/Adminmodels.js";
+import Gambar from "../models/GambarModels.js";
 
 export const getAdmin = async (req, res) => {
     try {
@@ -40,10 +41,11 @@ export const createAdmin = async(req, res) => {
         no_hp : no_hp,
         username: username,
         password: hashPassword,
+        role: "Admin"
       });
       res.status(201).json({ msg: "Register Berhasil" });
     } catch (error) {
-      res.status(400).json({ msg: error.message });
+      res.status(400).json({ msg: "Harap Masukan Semua Field"});
     }
 }
 
