@@ -13,6 +13,9 @@ import atletCaborRoute from "./routes/AtletcaborRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import GambarRoute from "./routes/GambarRoute.js";
 import PanduanRoute from "./routes/PanduanRoute.js"
+import KomponenRoute from "./routes/PerkembanganRoute/KomponenRoute.js"
+import IndikatorRoute from "./routes/PerkembanganRoute/IndikatorRoute.js"
+import PerkemRoute from "./routes/PerkembanganRoute/PerkemRoute.js"
 
 dotenv.config();
 
@@ -53,7 +56,11 @@ app.use(CaborRoute);
 app.use(atletCaborRoute);
 app.use(AuthRoute);
 app.use(GambarRoute);
-app.use(PanduanRoute)
+app.use(PanduanRoute);
+app.use(IndikatorRoute);
+app.use(KomponenRoute);
+app.use(PerkemRoute);
+
 
 // store.sync();
 

@@ -1,4 +1,5 @@
 import Cabor from "../models/Cabormodels.js";
+import Komponen from "../models/Perkembangan/KomponenModels.js";
 
 export const GetCabor = async (req, res) => {
     try {
@@ -57,7 +58,7 @@ export const AddCabor = async (req, res) => {
 };
 
 
-export const DeleteCabor = async (req, res) => {
+export const DeleteCabora = async (req, res) => {
   try {
     const Cabang = await Cabor.findOne({
       where: {
@@ -67,13 +68,40 @@ export const DeleteCabor = async (req, res) => {
     if (!Cabang) {
       return res.status(404).json({ msg: "Data tidak ditemukan" });
     }
-
     await Cabang.destroy(); // Menggunakan variabel `Cabang` yang telah ditemukan
+
+    
     res.status(200).json({ msg: "Data Telah terhapus" });
+
   } catch (error) {
     res.status(404).json({ msg: "Terdapat Data Dalam Cabor Ini. Tidak dapat di hapus" });
   }
 };
 
 
+
+export const DeleteCabor = async (req, res) => {
+  try {
+    const Cabang = await Cabor.findOne({
+      where: {
+        id_cabor: req.params.id,
+      },
+    });
+
+
+    const idCabor = Cabang.id_cabor
+    // Temukan dan hapus semua Komponen berdasarkan id_cabor
+    const Komponens = await Komponen.findAll({
+      where: {
+        id_cabor: idCabor,
+      },
+    });
+
+    await Komponens.destroy();
+    await Cabor.destroy();
+    res.status(200).json({msg : "hayyy"});
+  } catch (error) {
+    res.status(500).json({ msg: "Gagal menghapus data" });
+  }
+};
 

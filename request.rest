@@ -102,7 +102,7 @@ Content-Type: application/json
 
 ###
 // Get atlet by cabor
-GET http://localhost:5000/cabor/atlet/10
+GET http://localhost:5000/cabor/atlet/11
 Content-Type: application/json
 
 ###
@@ -140,7 +140,7 @@ Content-Type: application/json
 }
 ###
 //membuat atlet
-POST http://localhost:5000/atlet
+POST http://localhost:5000/gambar
 Content-Type: application/json
 
 {
