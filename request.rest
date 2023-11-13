@@ -5,7 +5,7 @@ Content-Type: application/json
 
 ###
 // get byid admin
-GET http://localhost:5000/admin/a496d0d2-2040-4f8d-8056-cb96c4dd1ce4
+GET http://localhost:5000/admin/629d51ea-54be-4d56-a072-a32a3fff04c3
 Content-Type: application/json
 
 ###
@@ -59,7 +59,7 @@ Content-Type: application/json
 
 ###
 //hapus cabor
-DELETE http://localhost:5000/cabor/19
+DELETE http://localhost:5000/cabor/10
 Content-Type: application/json
 
 ### 
@@ -92,12 +92,39 @@ DELETE http://localhost:5000/logout
 
 ###
 // Get atlet
-GET http://localhost:5000/atlet/1116001
+DELETE http://localhost:5000/komponen/122
 Content-Type: application/json
 
 ###
+// Get atlet
+GET http://localhost:5000/indikator/komponen/117
+Content-Type: application/json
+
+
+###
+// Get komponen
+POST http://localhost:5000/komponen
+Content-Type: application/json
+
+    {
+        "id_komponen" : "117",
+        "namaKomponen" : "KKai",
+        "id_cabor" : "20"
+    }
+
+###
+// Buat indikator
+POST http://localhost:5000/indikator
+Content-Type: application/json
+
+    {
+        "namaIndikator" : "Lari",
+        "id_komponen" : "123"
+    }
+
+###
 // Get cabor
-GET http://localhost:5000/cabor
+GET http://localhost:5000/cabor/11
 Content-Type: application/json
 
 ###
@@ -114,6 +141,11 @@ Content-Type: application/json
 ###
 // Get panduan
 GET http://localhost:5000/panduan
+Content-Type: application/json
+
+###
+// Get gambar by atlet
+GET http://localhost:5000/gambar/atlet/12003
 Content-Type: application/json
 
 

@@ -11,6 +11,7 @@ export const getAtlet = async(req, res) => {
             "id_atlet",
             "uuid",
             "nama",
+            "Pass",
             "id_cabor",
             "id_gambar",
             "tahun_daftar",
@@ -113,6 +114,7 @@ export const getAtletbyCabor = async(req, res) => {
             "nama_tengah",
             "nama_akhir",
             "username",
+            "Pass",
             "role",
           ],
           where: {
@@ -159,6 +161,7 @@ export const getAtletById = async (req, res) => {
         "id_atlet",
         "uuid",
         "nama",
+        "Pass",
         "id_cabor",
         "id_gambar",
         "tahun_daftar",
@@ -261,8 +264,8 @@ export const createAtlet = async(req, res) => {
       id_cabor,
       No_daftar,
       tahun_daftar,
-      nama_tengah,
       nama_akhir,
+      nama_tengah,
       nama_panggil,
       tgl_lahir,
       tmp_lahir,
@@ -329,10 +332,8 @@ export const createAtlet = async(req, res) => {
       nama_event,
       tahun_prestasi,
       capai_prestasi, 
-
-      password,
     } = req.body; 
-    const hashPassword = await argon2.hash(password);
+     
 
     let noDaftar;
 
@@ -350,7 +351,11 @@ export const createAtlet = async(req, res) => {
     } else {
       noDaftar = No_daftar;
     }
-    
+    const Passing = name_awal.toLowerCase() + id_cabor + noDaftar;
+    const hashPassword = await argon2.hash(Passing);
+    const PW = Passing;
+
+
      const gambar = await Gambar.findOne({
       // Tentukan kondisi di sini, misalnya berdasarkan ID Gambar terbaru.
       order: [["id_gambar", "DESC"]],
@@ -433,10 +438,11 @@ export const createAtlet = async(req, res) => {
             No_daftar: noDaftar,
             id_cabor: id_cabor,
             id_gambar: id_gambar,
-            username: tahun_daftar.slice(-2) + id_cabor + noDaftar,
+            username: id_cabor +  tahun_daftar.slice(-2) + noDaftar,
             id_atlet: tahun_daftar.slice(-2) + id_cabor + noDaftar,
             password: hashPassword,
             nama: name_awal + " " + nama_tengah+ " " + nama_akhir,
+            Pass : PW,
           });
 
   } catch (error) {

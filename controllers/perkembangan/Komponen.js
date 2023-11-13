@@ -1,4 +1,5 @@
 import Cabor from "../../models/Cabormodels.js";
+import Indikator from "../../models/Perkembangan/IndikatorModels.js";
 import Komponen from "../../models/Perkembangan/KomponenModels.js";
 
 export const getKomponen = async (req, res) => {
@@ -76,6 +77,7 @@ export const CreateKomponen = async(req, res) => {
 export const DeleteKomponen = async (req, res) => {
   try {
     // Hapus semua Komponen berdasarkan id_cabor
+    
     const result = await Komponen.destroy({
       where: {
         id_cabor: req.params.id,
@@ -94,26 +96,31 @@ export const DeleteKomponen = async (req, res) => {
       res.status(404).json({ msg: "Data Tidak Ditemukan" });
     }
   } catch (error) {
-    res.status(500).json({ msg: "Terjadi kesalahan dalam menghapus data" });
+    res.status(500).json({ msg: "Terdapat Data Dalam Cabang Olahraga Ini" });
   }
 };
 
 export const DeleteOneKomponen = async (req, res) => {
-    try {
-        const Komponens = await Komponen.findOne({
-            where : {
-                id_komponen : req.params.id,
-            },
+  try {
+    const Indi = await Indikator.destroy({
+      where: {
+        id_komponen: req.params.id,
+      },
+    });
+    
+    const Komponens = await Komponen.destroy({
+      where: {
+        id_komponen: req.params.id,
+      },
+    });
 
-        })
 
-        if(!Komponens) {
-            return res.status(404).json({msg : "Data Tidak Ditemukan"});
-        }
-        Komponens.destroy();
-        res.status(200).json({msg : "Data Berhasil Dihapus"});
-    } catch (error) {
-        return res.status(404).json({ msg: "Data Tidak Dapat Dihapus" });
-        
+    if (Komponens === 1 || Indi > 0) {
+      res.status(200).json({ msg: "Data Telah terhapus" });
+    } else {
+      res.status(404).json({ msg: "Data Tidak Ditemukan" });
     }
-}
+  } catch (error) {
+    return res.status(404).json({ msg: "Data Tidak Dapat Dihapus" });
+  }
+};

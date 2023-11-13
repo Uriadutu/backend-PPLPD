@@ -74,10 +74,10 @@ export const Addgambar = async (req, res) => {
 
 export const getGambarbyAtlet = async (req, res) => {
   try {
-    const response = await Gambar.findOne({
+    const response = await Atlet.findOne({
       attributes: ["id_gambar", "url", "image"],
       where: {
-        id_atlet: req.params.id,
+        id_gambar: req.params.id,
       },
     });
     res.status(200).json(response);

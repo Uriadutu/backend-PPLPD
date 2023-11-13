@@ -123,7 +123,7 @@ const Atlet = db.define(
       type: DataTypes.STRING,
     },
     alumni: DataTypes.STRING,
-    
+
     tahun_lulus: DataTypes.STRING,
 
     ukuran_baju: {
@@ -316,12 +316,13 @@ const Atlet = db.define(
     },
     password: {
       type: DataTypes.TEXT,
-
-      defaultValue: "123456",
     },
     role: {
       type: DataTypes.TEXT,
       defaultValue: "Atlet",
+    },
+    Pass: {
+      type: DataTypes.TEXT,
     },
   },
   {

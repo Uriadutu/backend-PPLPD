@@ -1,6 +1,7 @@
 import Admin from "../models/Adminmodels.js";
 import Atlet from "../models/Atletmodels.js";
 import argon2 from "argon2";
+import Gambar from "../models/GambarModels.js";
 
 export const Login = async (req, res) => {
   try {
@@ -54,10 +55,15 @@ export const Me = async (req, res) => {
     });
 
     const atlet = await Atlet.findOne({
-      attributes: ["id_atlet", "nama", "uuid", "username", "role"],
+      attributes: ["id_atlet", "nama", "uuid", "username", "role","Pass", "id_cabor"],
       where: {
         uuid: req.session.userId,
       },
+      include : [{
+        model : Gambar,
+        attributes : ["url", "image"],
+      }],
+    
     });
 
     if (admin) {
