@@ -17,6 +17,7 @@ import KomponenRoute from "./routes/PerkembanganRoute/KomponenRoute.js"
 import IndikatorRoute from "./routes/PerkembanganRoute/IndikatorRoute.js"
 import PerkemRoute from "./routes/PerkembanganRoute/PerkemRoute.js"
 import LatihanRoute from "./routes/PerkembanganRoute/LatihanRoute.js"
+import BeritaRoute from "./routes/BeritaRoute.js"
 
 dotenv.config();
 
@@ -62,6 +63,7 @@ app.use(IndikatorRoute);
 app.use(KomponenRoute);
 app.use(PerkemRoute);
 app.use(LatihanRoute);
+app.use(BeritaRoute);
 
 
 

@@ -27,6 +27,12 @@ Content-Type: application/json
     "confPassword" : "123456"
 }
 
+### 
+//Membuat admin
+GET http://localhost:5000/admin/search/Uria
+Content-Type: application/json
+
+
 ###
 //update admin
 PATCH http://localhost:5000/admin/a781de69-04f2-4914-b933-1e43cc0eff20
@@ -54,7 +60,7 @@ Content-Type: application/json
 
 {
     "namaCabor": "Gwent Labada",
-    "kodeCabor": "16"
+    "kodeCabor": "19"
 }
 
 ###
@@ -97,9 +103,20 @@ Content-Type: application/json
 
 ###
 // Get atlet
-GET http://localhost:5000/indikator/komponen/117
+GET http://localhost:5000/latihan/3
 Content-Type: application/json
 
+
+###
+//Buat latihan
+POST http://localhost:5000/latihan
+Content-Type: application/json
+
+    {
+        "id_indikator" : "17",
+        "namaLatihan" : "Latihan1",
+        "id_cabor" : "11"
+    }
 
 ###
 // Get komponen
@@ -109,7 +126,7 @@ Content-Type: application/json
     {
         "id_komponen" : "117",
         "namaKomponen" : "KKai",
-        "id_cabor" : "20"
+        "id_cabor" : "11"
     }
 
 ###
@@ -119,12 +136,12 @@ Content-Type: application/json
 
     {
         "namaIndikator" : "Lari",
-        "id_komponen" : "123"
+        "id_komponen" : "117"
     }
 
 ###
 // Get cabor
-GET http://localhost:5000/cabor/11
+GET http://localhost:5000/indikator/cabor/12
 Content-Type: application/json
 
 ###

@@ -2,9 +2,12 @@ import Admin from "../models/Adminmodels.js";
 import Atlet from "../models/Atletmodels.js";
 import argon2 from "argon2";
 import Gambar from "../models/GambarModels.js";
+import Cabor from "../models/Cabormodels.js";
 
 export const Login = async (req, res) => {
   try {
+    let user = null;
+
     const admin = await Admin.findOne({
       where: {
         username: req.body.username,
@@ -18,21 +21,28 @@ export const Login = async (req, res) => {
     });
 
     if (admin || atlet) {
-      const user = admin || atlet;
+      user = admin || atlet;
       const match = await argon2.verify(user.password, req.body.password);
-      if (match) {
-        // Berhasil login
-        req.session.userId = user.uuid;
-        const { uuid, username, role } = user;
-        const nama = user.nama; // Jika kolom 'nama' tersedia di tabel Atlet
-        const id = user.id_atlet || user.id_admin;
-        res.status(200).json({ id, uuid, nama, username, role });
-      } else {
-        res.status(400).json({ msg: "Password salah" });
+      if (!match) {
+        return res.status(400).json({ msg: "Password salah" });
       }
     } else {
-      res.status(404).json({ msg: "User tidak ditemukan" });
+      return res.status(404).json({ msg: "User tidak ditemukan" });
     }
+
+    // Periksa status atlet jika ada
+    if (user && user.name_awal === "tidakAktif") {
+      return res.status(403).json({ msg: "Akun Anda sudah tidak aktif" });
+    }
+
+    // Tambahkan pengecekan lainnya jika perlu
+
+    // Berhasil login
+    req.session.userId = user.uuid;
+    const { uuid, username, role } = user;
+    const nama = user.nama; // Jika kolom 'nama' tersedia di tabel Atlet
+    const id = user.id_atlet || user.id_admin;
+    res.status(200).json({ id, uuid, nama, username, role });
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Terjadi kesalahan dalam proses login" });
@@ -55,14 +65,18 @@ export const Me = async (req, res) => {
     });
 
     const atlet = await Atlet.findOne({
-      attributes: ["id_atlet", "nama", "uuid", "username", "role","Pass", "id_cabor"],
+      attributes: ["id_atlet", "nama", "uuid", "username", "role","Pass", "id_cabor", "email", "nama_akhir"],
       where: {
         uuid: req.session.userId,
       },
       include : [{
         model : Gambar,
         attributes : ["url", "image"],
+      }, {
+        model : Cabor,
+        attributtes : ["namaCabor"]
       }],
+
     
     });
 

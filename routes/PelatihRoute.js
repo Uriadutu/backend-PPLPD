@@ -6,13 +6,14 @@ import {
   updatePelatih,
   deletePelatih,
 } from "../controllers/Pelatih.js";
+import { Adminonly, verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
 router.get("/pelatih", getPelatih);
 router.get("/pelatih/id", getPelatihById);
-router.post("/pelatih", createPelatih);
-router.get("/pelatih/:id", updatePelatih);
-router.delete("/pelatih/:id", deletePelatih);
+router.post("/pelatih",verifyUser, Adminonly,createPelatih);
+router.get("/pelatih/:id",verifyUser, Adminonly, updatePelatih);
+router.delete("/pelatih/:id",verifyUser, Adminonly, deletePelatih);
 
 export default router;

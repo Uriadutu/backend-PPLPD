@@ -1,3 +1,5 @@
+import Atlet from "../../models/Atletmodels.js";
+import Cabor from "../../models/Cabormodels.js";
 import Indikator from "../../models/Perkembangan/IndikatorModels.js";
 import Komponen from "../../models/Perkembangan/KomponenModels.js";
 
@@ -86,4 +88,26 @@ export const DeleteIndikator = async (req, res )=> {
     } catch (error) {
         res.status(404).json({ msg: "Data Tidak Dapat Dihapus" });
     }
+}
+
+export const getIndiByCabor = async (req, res)=> {
+  try {
+    const response = await Indikator.findAll({
+      where : {
+        id_cabor : req.params.id,
+      },
+      attributes : ["id_cabor", "id_komponen", "namaIndikator"],
+      include : [ {
+        model : Komponen,
+        attributes : ["namaKomponen", "id_cabor"],
+        include : [{
+          model : Cabor,
+          attributes : ["namaCabor"],
+        }]
+      },]
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404).json({msg : "Data tidak ditemukan"}); 
+  }
 }
