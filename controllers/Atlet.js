@@ -542,11 +542,11 @@ export const createAtlet = async(req, res) => {
             No_daftar: noDaftar,
             id_cabor: id_cabor,
             id_gambar: id_gambar,
-            id_atlet: id_cabor +  tahun_daftar.slice(-2) + noDaftar,
-            username: tahun_daftar.slice(-2) + id_cabor + noDaftar,
+            username: id_cabor + tahun_daftar.slice(-2) + noDaftar,
+            id_atlet: tahun_daftar.slice(-2) + id_cabor + noDaftar,
             password: hashPassword,
-            nama: name_awal + " " + nama_tengah+ " " + nama_akhir,
-            Pass : PW,
+            nama: name_awal + " " + nama_tengah + " " + nama_akhir,
+            Pass: PW,
           });
 
   } catch (error) {

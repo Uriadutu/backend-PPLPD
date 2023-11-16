@@ -8,7 +8,7 @@ const Berita = db.define("Berita", {
         type : DataTypes.STRING,
         allowNull : false,
         validate : {
-            len : [1, 20],
+            len : [1, 200],
             notEmpty : true,
         }
     },
@@ -17,7 +17,7 @@ const Berita = db.define("Berita", {
         allowNull : false,
         validate : {
             notEmpty : true,
-            len : [5, 600],
+            len : [5, 700],
         }
     },
 

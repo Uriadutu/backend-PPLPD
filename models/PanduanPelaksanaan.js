@@ -16,6 +16,7 @@ const Panduan = db.define("Panduan", {
 
     },
     url : DataTypes.STRING,
+    
     format : DataTypes.STRING,
 }, {
     freezeTableName : true,
