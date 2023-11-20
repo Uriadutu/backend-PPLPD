@@ -1,16 +1,16 @@
 import Cabor from "../../models/Cabormodels.js";
-import Indikator from "../../models/Perkembangan/IndikatorModels.js";
+import Komponen from "../../models/Perkembangan/KomponenModels.js";
 import Latihan from "../../models/Perkembangan/LatihanModels.js";
 
 export const getLatihan = async(req, res) => {
     try {
         const response = await Latihan.findAll({
-            attributes :["id_latihan", "namaLatihan", "id_indikator", "id_cabor"],
+            attributes :["id_latihan", "namaLatihan", "id_komponen", "id_cabor"],
             include : [ 
                 {model : Cabor,
                 attributes : ["namaCabor"]},
-                {model : Indikator,
-                attributes : ["namaIndikator", "id_komponen"]},
+                {model : Komponen,
+                attributes : ["namaKomponen", "id_komponen"]},
 
             ]
         });
@@ -31,7 +31,7 @@ export const getLatihanbyId = async(req, res) => {
          attributes: ["id_latihan", "namaLatihan", "id_indikator", "id_cabor"],
          include: [
            { model: Cabor, attributes: ["namaCabor"] },
-           { model: Indikator, attributes: ["namaIndikator", "id_komponen"] },
+           { model: Komponen, attributes: ["namaKomponen", "id_komponen"] },
          ],
        });
        res.status(200).json(response);
@@ -44,12 +44,12 @@ export const getLatihanbyIndi = async(req, res) => {
      try {
        const response = await Latihan.findAll({
         where : {
-            id_indikator : req.params.id,
+            id_komponen : req.params.id,
         },
          attributes: ["id_latihan", "namaLatihan", "id_indikator", "id_cabor"],
          include: [
            { model: Cabor, attributes: ["namaCabor"] },
-           { model: Indikator, attributes: ["namaIndikator", "id_komponen"] },
+           { model: Komponen, attributes: ["namaKomponen", "id_komponen"] },
          ],
        });
        res.status(200).json(response);
@@ -60,10 +60,10 @@ export const getLatihanbyIndi = async(req, res) => {
 
 export const createLatihan = async(req, res) => {
     try {
-        const {id_cabor, id_indikator, namaLatihan,} =req.body;
+        const {id_cabor, id_komponen, namaLatihan,} =req.body;
         await Latihan.create({
             id_cabor : id_cabor,
-            id_indikator : id_indikator,
+            id_komponen : id_komponen,
             namaLatihan : namaLatihan,
         }),
         res.status(200).json({msg : "Data Berhasil Dibuat"})

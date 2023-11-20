@@ -68,11 +68,7 @@ export const DeletePanduan = async(req, res) => {
      try {
        const filepath = `./public/File/${panduan.file}`;
        fs.unlinkSync(filepath);
-       await Panduan.destroy({
-         where: {
-           id_panduan: req.params.id,
-         },
-       });
+       await panduan.destroy();
        res.status(200).json({ msg: "panduan Deleted Successfuly" });
      } catch (error) {
        console.log(error.message);

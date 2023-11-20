@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Cabor from "./Cabormodels.js";
 
 const { DataTypes } = Sequelize;
 
@@ -10,6 +11,7 @@ const Pelatih = db.define(
       type: DataTypes.STRING,
       primaryKey: true,
     },
+    id_cabor : DataTypes.INTEGER,
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
@@ -48,6 +50,7 @@ const Pelatih = db.define(
     },
 
     image: DataTypes.STRING,
+    url :DataTypes.STRING,
 
     tgl_lahir: {
       type: DataTypes.STRING,
@@ -337,5 +340,8 @@ const Pelatih = db.define(
     freezeTableName: true,
   }
 );
+
+Cabor.hasMany(Pelatih);
+Pelatih.belongsTo(Cabor, {foreignKey : "id_cabor"});
 
 export default Pelatih;

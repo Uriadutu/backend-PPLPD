@@ -18,6 +18,8 @@ import IndikatorRoute from "./routes/PerkembanganRoute/IndikatorRoute.js"
 import PerkemRoute from "./routes/PerkembanganRoute/PerkemRoute.js"
 import LatihanRoute from "./routes/PerkembanganRoute/LatihanRoute.js"
 import BeritaRoute from "./routes/BeritaRoute.js"
+import ProgramRoute from "./routes/ProgramRoute.js"
+import SuperRoute from "./routes/SuperAdminRoute.js"
 
 dotenv.config();
 
@@ -64,6 +66,8 @@ app.use(KomponenRoute);
 app.use(PerkemRoute);
 app.use(LatihanRoute);
 app.use(BeritaRoute);
+app.use(ProgramRoute);
+app.use(SuperRoute);
 
 
 

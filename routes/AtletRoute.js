@@ -19,8 +19,8 @@ router.get("/atlet/countByCabor", countAtletByCabor);
 router.get("/atlet", getAtlet);
 router.get("/atlet/uuid/:id", getAtletByuuid);
 router.get("/atlet/:id", getAtletById);
-router.post("/atlet",verifyUser, Adminonly, createAtlet);
-router.get("/atlet/:id",verifyUser, Adminonly, updateAtlet);
+router.post("/atlet", createAtlet);
+router.get("/atlet/:id", updateAtlet);
 router.delete("/atlet/:id",verifyUser, Adminonly, deleteAtletfile);
 
 export default router;

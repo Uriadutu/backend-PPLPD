@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../../config/Database.js";
 import Indikator from "./IndikatorModels.js";
-import Cabor from "../Cabormodels.js";
+import Atlet from "../Atletmodels.js";
 import Komponen from "./KomponenModels.js";
 import Latihan from "./LatihanModels.js";
 
@@ -35,8 +35,8 @@ const Perkembangan = db.define("Perkembangan", {
 
 Indikator.hasMany(Perkembangan);
 Perkembangan.belongsTo(Indikator, {foreignKey : "id_indikator"});
-Cabor.hasMany(Perkembangan);
-Perkembangan.belongsTo(Cabor, {foreignKey : "id_cabor"});
+Atlet.hasMany(Perkembangan);
+Perkembangan.belongsTo(Atlet, {foreignKey : "id_atlet"});
 Komponen.hasMany(Perkembangan);
 Perkembangan.belongsTo(Komponen, {foreignKey : "id_komponen"});
 Latihan.hasMany(Perkembangan);

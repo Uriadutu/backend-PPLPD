@@ -1,0 +1,17 @@
+// Get Super
+GET http://localhost:5000/panduan
+Content-Type: application/json
+
+
+###
+//Buat Super
+POST http://localhost:5000/super
+Content-Type: application/json
+
+    {
+        "nama" : "super",
+        "username" : "superadmin",
+        "password" : "123456",
+        "confPassword" : "123456"
+    }
+

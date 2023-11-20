@@ -3,6 +3,7 @@ import Atlet from "../models/Atletmodels.js";
 import argon2 from "argon2";
 import Gambar from "../models/GambarModels.js";
 import Cabor from "../models/Cabormodels.js";
+import SuperAdmin from "../models/SuperAdmin.js";
 
 export const Login = async (req, res) => {
   try {
@@ -20,8 +21,14 @@ export const Login = async (req, res) => {
       },
     });
 
-    if (admin || atlet) {
-      user = admin || atlet;
+    const adminSuper = await SuperAdmin.findOne({
+      where : {
+        username : req.body.username,
+      }
+    })
+
+    if (admin || atlet || adminSuper) {
+      user = admin || atlet || adminSuper ;
       const match = await argon2.verify(user.password, req.body.password);
       if (!match) {
         return res.status(400).json({ msg: "Password salah" });
@@ -31,7 +38,7 @@ export const Login = async (req, res) => {
     }
 
     // Periksa status atlet jika ada
-    if (user && user.name_awal === "tidakAktif") {
+    if (user && user.status === "tidakAktif") {
       return res.status(403).json({ msg: "Akun Anda sudah tidak aktif" });
     }
 
@@ -41,7 +48,7 @@ export const Login = async (req, res) => {
     req.session.userId = user.uuid;
     const { uuid, username, role } = user;
     const nama = user.nama; // Jika kolom 'nama' tersedia di tabel Atlet
-    const id = user.id_atlet || user.id_admin;
+    const id = user.id_atlet || user.id_admin || user.id_Super;
     res.status(200).json({ id, uuid, nama, username, role });
   } catch (error) {
     console.error(error);
@@ -59,6 +66,13 @@ export const Me = async (req, res) => {
 
     const admin = await Admin.findOne({
       attributes: ["id_admin", "nama", "uuid", "username", "role"],
+      where: {
+        uuid: req.session.userId,
+      },
+    });
+    
+    const SAdmin = await SuperAdmin.findOne({
+      attributes: ["id_Super", "nama", "uuid", "username", "role"],
       where: {
         uuid: req.session.userId,
       },
@@ -84,8 +98,10 @@ export const Me = async (req, res) => {
       user = admin;
     } else if (atlet) {
       user = atlet;
+    } else {
+      user = SAdmin;
     }
-
+ 
     if (user) {
       res.status(200).json(user);
     } else {

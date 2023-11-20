@@ -333,7 +333,6 @@ const Atlet = db.define(
 Cabor.hasMany(Atlet);
 Atlet.belongsTo(Cabor, { foreignKey: "id_cabor" });
 Gambar.hasMany(Atlet);
-Atlet.belongsTo(Gambar, { foreignKey: "id_gambar"});
-
+Atlet.belongsTo(Gambar, { foreignKey: "id_gambar" });
 
 export default Atlet;

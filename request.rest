@@ -1,6 +1,6 @@
 ###
 // get semua admin
-GET http://localhost:5000/admin
+GET http://localhost:5000/program/11
 Content-Type: application/json
 
 ###
@@ -10,11 +10,11 @@ Content-Type: application/json
 
 ###
 // hapus admin
-DELETE http://localhost:5000/admin/600fea08-2fdd-476b-9510-86d16693c0eb
+DELETE  http://localhost:5000/program/7
 Content-Type: application/json
 
 
-### 
+###
 //Membuat admin
 POST http://localhost:5000/admin
 Content-Type: application/json
@@ -22,7 +22,7 @@ Content-Type: application/json
 {
     "nama": "Grace",
     "no_hp": "083909282",
-    "username": "admin6",
+    "username": "admi",
     "password" : "123456",
     "confPassword" : "123456"
 }
@@ -68,7 +68,7 @@ Content-Type: application/json
 DELETE http://localhost:5000/cabor/10
 Content-Type: application/json
 
-### 
+###
 //Login User admin
 POST http://localhost:5000/login
 Content-Type: application/json
@@ -84,8 +84,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "uriadutu",
-    "password" : "123456"
+    "username": "1112001",
+    "password" : "nama depan11001"
 }
 ###
 // Me
@@ -98,7 +98,12 @@ DELETE http://localhost:5000/logout
 
 ###
 // Get atlet
-DELETE http://localhost:5000/komponen/122
+GET  http://localhost:5000/komponen/cabor/21
+Content-Type: application/json
+
+###
+// Get atlet
+GET  http://localhost:5000/indikator/cabor/21
 Content-Type: application/json
 
 ###
@@ -113,9 +118,20 @@ POST http://localhost:5000/latihan
 Content-Type: application/json
 
     {
-        "id_indikator" : "17",
+        "id_komponen" : "144",
         "namaLatihan" : "Latihan1",
         "id_cabor" : "11"
+    }
+
+
+###
+//Buat berita
+POST http://localhost:5000/berita
+Content-Type: application/json
+
+    {
+        "judul" : "Perlengkapan untuk hari ini",
+        "isiBerita" : "Kalian manusia laknat jangan malas keode"
     }
 
 ###
