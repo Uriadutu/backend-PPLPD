@@ -1,5 +1,6 @@
 import Admin from "../models/Adminmodels.js";
 import Atlet from "../models/Atletmodels.js";
+import Pelatih from "../models/Pelatihmodels.js";
 import SuperAdmin from "../models/SuperAdmin.js";
 
 export const verifyUser = async (req, res, next) => {
@@ -21,9 +22,9 @@ export const verifyUser = async (req, res, next) => {
       uuid: req.session.userId,
     },
   });
-  const user = Admins || SuperAdmins || Atlets;
+  const user = Admins || SuperAdmins || Atlets ;
   if (!user) return res.status(404).json({ msg: "Akses terlarang" });
-  res.userId = user.id_Super || user.id_admin || user.id_atlet;
+  req.userId = user.id_Super || user.id_admin || user.id_atlet;
   req.role = user.role;
   next();
 };
