@@ -77,5 +77,6 @@ app.use(IsiForumRoute);
 // store.sync();
 
 app.listen(process.env.APP_PORT, ()=> {
+
     console.log('Server Aman.. Semangat boleh, Istirahat jangan lupa');
 });

@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Cabor from "./Cabormodels.js";
-import Gambar from "./GambarModels.js";
+import Admin from "./Adminmodels.js";
 
 const { DataTypes } = Sequelize;
 
@@ -12,6 +12,10 @@ const Atlet = db.define(
       type: DataTypes.STRING,
       primaryKey: true,
     },
+    status : {
+      type : DataTypes.STRING,
+      defaultValue: "aktif",
+    },
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
@@ -20,11 +24,15 @@ const Atlet = db.define(
       type: DataTypes.STRING,
     },
     // INI BATAS BARU
+    id_admin :DataTypes.STRING,
     id_cabor: {
       type: DataTypes.INTEGER,
     },
-    id_gambar: {
-      type: DataTypes.INTEGER,
+    gambar: {
+      type: DataTypes.STRING,
+    },
+    url: {
+      type: DataTypes.STRING,
     },
 
     tahun_daftar: {
@@ -332,7 +340,7 @@ const Atlet = db.define(
 
 Cabor.hasMany(Atlet);
 Atlet.belongsTo(Cabor, { foreignKey: "id_cabor" });
-Gambar.hasMany(Atlet);
-Atlet.belongsTo(Gambar, { foreignKey: "id_gambar" });
+Admin.hasMany(Atlet);
+Atlet.belongsTo(Admin, {foreignKey : "id_admin"})
 
 export default Atlet;

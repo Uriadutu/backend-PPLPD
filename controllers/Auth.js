@@ -1,9 +1,9 @@
 import Admin from "../models/Adminmodels.js";
 import Atlet from "../models/Atletmodels.js";
 import argon2 from "argon2";
-import Gambar from "../models/GambarModels.js";
 import Cabor from "../models/Cabormodels.js";
 import SuperAdmin from "../models/SuperAdmin.js";
+import Pelatih from "../models/Pelatihmodels.js";
 
 export const Login = async (req, res) => {
   try {
@@ -25,10 +25,16 @@ export const Login = async (req, res) => {
       where : {
         username : req.body.username,
       }
-    })
+    });
+    const pelatih = await Pelatih.findOne({
+      where : {
+        username : req.body.username,
+      }
+    });
 
-    if (admin || atlet || adminSuper) {
-      user = admin || atlet || adminSuper ;
+
+    if (admin || atlet || adminSuper || pelatih) {
+      user = admin || atlet || adminSuper || pelatih;
       const match = await argon2.verify(user.password, req.body.password);
       if (!match) {
         return res.status(400).json({ msg: "Password salah" });
@@ -48,7 +54,7 @@ export const Login = async (req, res) => {
     req.session.userId = user.uuid;
     const { uuid, username, role } = user;
     const nama = user.nama; // Jika kolom 'nama' tersedia di tabel Atlet
-    const id = user.id_atlet || user.id_admin || user.id_Super;
+    const id = user.id_atlet || user.id_admin || user.id_Super || user.id_pelatih;
     res.status(200).json({ id, uuid, nama, username, role });
   } catch (error) {
     console.error(error);
@@ -70,7 +76,7 @@ export const Me = async (req, res) => {
         uuid: req.session.userId,
       },
     });
-    
+
     const SAdmin = await SuperAdmin.findOne({
       attributes: ["id_Super", "nama", "uuid", "username", "role"],
       where: {
@@ -79,29 +85,63 @@ export const Me = async (req, res) => {
     });
 
     const atlet = await Atlet.findOne({
-      attributes: ["id_atlet", "nama", "uuid", "username", "role","Pass", "id_cabor", "email", "nama_akhir"],
+      attributes: [
+        "id_atlet",
+        "nama",
+        "uuid",
+        "url",
+        "username",
+        "role",
+        "Pass",
+        "id_cabor",
+        "email",
+        "nama_akhir",
+      ],
       where: {
         uuid: req.session.userId,
       },
-      include : [{
-        model : Gambar,
-        attributes : ["url", "image"],
-      }, {
-        model : Cabor,
-        attributtes : ["namaCabor"]
-      }],
+      include: [
+        {
+          model: Cabor,
+          attributes: ["namaCabor", "id_cabor"],
+        },
+      ],
+    });
 
-    
+    const pelatih = await Pelatih.findOne({
+      attributes: [
+        "id_pelatih",
+        "nama",
+        "uuid",
+        "url",
+        "username",
+        "role",
+        "Pass",
+        "id_cabor",
+        "email",
+        "nama_akhir",
+      ],
+      where: {
+        uuid: req.session.userId,
+      },
+      include: [
+        {
+          model: Cabor,
+          attributes: ["namaCabor", "id_cabor"],
+        },
+      ],
     });
 
     if (admin) {
       user = admin;
     } else if (atlet) {
       user = atlet;
-    } else {
+    } else if (SAdmin) {
       user = SAdmin;
+    } else {
+      user = pelatih;
     }
- 
+
     if (user) {
       res.status(200).json(user);
     } else {

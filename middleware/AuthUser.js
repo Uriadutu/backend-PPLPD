@@ -22,7 +22,7 @@ export const verifyUser = async (req, res, next) => {
       uuid: req.session.userId,
     },
   });
-  const user = Admins || SuperAdmins || Atlets ;
+  const user = Admins || SuperAdmins || Atlets;
   if (!user) return res.status(404).json({ msg: "Akses terlarang" });
   req.userId = user.id_Super || user.id_admin || user.id_atlet;
   req.role = user.role;
