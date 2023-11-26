@@ -5,7 +5,7 @@ import Komponen from "../../models/Perkembangan/KomponenModels.js";
 export const getKomponen = async (req, res) => {
     try {
         const response = await Komponen.findAll({
-            attributes : ["id_komponen", "namaKomponen"],
+            attributes : ["id_komponen", "namaKomponen", "periode"],
             include : [
                 {
                     model : Cabor,
@@ -26,7 +26,8 @@ export const getKomponenById = async (req, res) => {
           where: {
             id_komponen: req.params.id,
           },
-          attributes: ["id_komponen", "namaKomponen"],
+          attributes: ["id_komponen", "namaKomponen", "periode"],
+
           include: [
             {
               model: Cabor,
@@ -45,7 +46,8 @@ export const getKomponenByCabor = async (req, res) => {
           where: {
             id_cabor: req.params.id,
           },
-          attributes: ["id_komponen", "namaKomponen"],
+          attributes: ["id_komponen", "namaKomponen", "periode"],
+
           include: [
             {
               model: Cabor,
@@ -59,13 +61,37 @@ export const getKomponenByCabor = async (req, res) => {
     }
 }
 
+export const getKomponenByPeriodeAndCabor = async (req, res) => {
+  try {
+    const { id, periode } = req.params;
+    const response = await Komponen.findAll({
+      where: {
+        id_cabor: id,
+        periode: periode, // Sesuaikan dengan nama kolom yang sesuai di tabel database Anda
+      },
+      attributes: ["id_komponen", "namaKomponen", "periode"],
+      include: [
+        {
+          model: Cabor,
+          attributes: ["id_cabor", "namaCabor", "inisialCabor"],
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404).json({ msg: "Data Tidak Ditemukan" });
+  }
+};
+
+
 export const CreateKomponen = async(req, res) => {
     try {
-        const {id_komponen, id_cabor, namaKomponen} = req.body;
+        const {id_komponen, id_cabor, namaKomponen, periode} = req.body;
         await Komponen.create({
             id_komponen : id_komponen,
             id_cabor : id_cabor,
             namaKomponen : namaKomponen,
+            periode : periode.slice(0, -3),
         });
         res.status(200).json({msg : "data berhasil ditambahkan"})
         
