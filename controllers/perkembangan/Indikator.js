@@ -25,7 +25,7 @@ export const getIndikatorByKomponen = async (req, res) => {
         where : {
             id_komponen : req.params.id
         },
-        attributes: ["id_indikator", "namaIndikator"],
+        attributes: ["id_indikator", "namaIndikator", "id_komponen"],
         include: [
           {
             model: Komponen,

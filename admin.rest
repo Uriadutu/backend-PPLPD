@@ -38,7 +38,17 @@ Content-Type: application/json
 
 ###
 //Buat Super
-GET http://localhost:5000/chat/5
+GET http://localhost:5000/perkembangan/atlet/2111002
+Content-Type: application/json
+
+###
+//get get
+GET http://localhost:5000/komponen/periode/12/2023-11
+Content-Type: application/json
+
+###
+//get get
+GET http://localhost:5000/perkembangan/2023-11-15/2111002
 Content-Type: application/json
 
 ###

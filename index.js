@@ -22,6 +22,7 @@ import ProgramRoute from "./routes/ProgramRoute.js"
 import SuperRoute from "./routes/SuperAdminRoute.js"
 import ForumRoute from "./routes/ForumRoute.js"
 import IsiForumRoute from "./routes/IsiForumRoute.js"
+import PrestasiRoute from "./routes/PerkembanganRoute/PrestasiRoute.js"
 dotenv.config();
 
 const app = express();
@@ -71,6 +72,7 @@ app.use(ProgramRoute);
 app.use(SuperRoute);
 app.use(ForumRoute);
 app.use(IsiForumRoute);
+app.use(PrestasiRoute);
 
 
 

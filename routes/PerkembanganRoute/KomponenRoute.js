@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/komponen", getKomponen);
 router.get("/komponen/:id", getKomponenById);
+router.get("/komponen/cabor/:id", getKomponenByCabor);
 router.get("/komponen/periode/:id/:periode", getKomponenByPeriodeAndCabor);
 router.post("/komponen", CreateKomponen);
 router.delete("/komponen/cabor/:id", DeleteKomponen);
