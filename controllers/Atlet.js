@@ -679,25 +679,24 @@ export const updateAtlet = async (req, res) => {
     } = req.body;
     // let Passing = name_awal + tahun_daftar.slice(-2) + atlet.No_daftar;
 
-    
-    let Pass = null;
-    if(tahun_daftar === null || tahun_daftar === ""){
-      Pass = atlet.tahun_daftar.slice(-2);
-    }else {
-      Pass = tahun_daftar.slice(-2);
-    }
+     const namaKecil = name_awal ? name_awal.toLowerCase() : atlet.name_awal.toLowerCase();
 
-    const tahun = Pass;
-    const Passing = name_awal.toLowerCase() + tahun + atlet.No_daftar;
- 
+     // Pastikan atlet.id_cabor dan atlet.noDaftar memiliki nilai yang valid sebelum digunakan
+     const tglDaftar = atlet.tahun_daftar.slice(-2)
+       ? atlet.tahun_daftar.slice(-2)
+       : "";
+     const noDaftar = atlet.No_daftar;
 
-    let hashPassword;
-    // const Passing = name_awal.toLowerCase() + tahun_daftar.slice(-2) + atlet.noDaftar;
-    if (password === "" || password === null) {
-      hashPassword = atlet.password;
-    } else {
-      hashPassword = await argon2.hash(Passing);
-    }
+     // Gabungkan string dengan menggunakan template literals
+     const Passing = `${namaKecil}${tglDaftar}${noDaftar}`;
+
+     // Pastikan Passing memiliki nilai string yang valid sebelum dihash
+     if (!Passing) {
+       return res.status(400).json({ error: "Passing tidak valid" });
+     }
+
+     const hashPassword = await argon2.hash(Passing);
+     const PW = Passing;
 
 
     const url = `${req.protocol}://${req.get(
@@ -775,7 +774,7 @@ export const updateAtlet = async (req, res) => {
           tahun_daftar: tahun_daftar,
           id_admin: req.userId,
           password: hashPassword,
-          Pass: Passing
+          Pass: PW
         },
         {
           where: {
