@@ -2,19 +2,34 @@ import Perkembangan from "../../models/Perkembangan/Perkembanganmodels.js";
 import Atlet from "../../models/Atletmodels.js"
 import Indikator from "../../models/Perkembangan/IndikatorModels.js";
 import Komponen from "../../models/Perkembangan/KomponenModels.js";
+import Cabor from "../../models/Cabormodels.js";
 
 export const getPerkembangan = async (req, res) => {
   try {
     const response = await Perkembangan.findAll({
       attributes: ["id_atlet", "id_indikator", "tgl", "hasilTes"],
-      include : [{
-        model : Atlet,
-        attributes : ["nama", "kelamin"],
-      }, {
-        model : Indikator,
-        attributes : ["namaIndikator"],
-      }
-    ]
+      include: [
+        {
+          model: Atlet,
+          attributes: ["nama", "kelamin"],
+        },
+        {
+          model: Indikator,
+          attributes: ["namaIndikator"],
+          include: [
+            {
+              model: Komponen,
+              attributes: ["id_komponen", "namaKomponen"],
+              include: [
+                {
+                  model: Cabor,
+                  attributes: ["id_cabor", "namaCabor"],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
     
     res.status(200).json(response);
