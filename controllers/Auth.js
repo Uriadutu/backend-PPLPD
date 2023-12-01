@@ -16,6 +16,7 @@ export const Login = async (req, res) => {
     });
 
     const atlet = await Atlet.findOne({
+      
       where: {
         username: req.body.username,
       },
@@ -27,9 +28,9 @@ export const Login = async (req, res) => {
       }
     });
     const pelatih = await Pelatih.findOne({
-      where : {
-        username : req.body.username,
-      }
+      where: {
+        username: req.body.username,
+      },
     });
 
 
