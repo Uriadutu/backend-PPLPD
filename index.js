@@ -25,6 +25,7 @@ import IsiForumRoute from "./routes/IsiForumRoute.js"
 import PrestasiRoute from "./routes/PerkembanganRoute/PrestasiRoute.js"
 import ClubRouter from "./routes/ClubRoute.js"
 import CLubAtletRouter from "./routes/ClubAtletRoute.js"
+import LisensiPelatihRoute from "./routes/PelatihLisensiRouter.js"
 dotenv.config();
 
 const app = express();
@@ -77,7 +78,7 @@ app.use(IsiForumRoute);
 app.use(PrestasiRoute);
 app.use(ClubRouter)
 app.use(CLubAtletRouter);
-
+app.use(LisensiPelatihRoute)
 
 // store.sync();
 

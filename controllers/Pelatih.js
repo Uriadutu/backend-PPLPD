@@ -56,12 +56,12 @@ export const getPelatihByuuid = async (req, res) => {
           include: [
             {
               model: Cabor,
-              attributes: ["namaCabor"],
+              attributes: ["id_cabor", "namaCabor"],
             },
             {
               model: Admin,
               attributes: ["nama"],
-            },
+            }, 
           ],
         });
         res.status(200).json(response);

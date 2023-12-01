@@ -13,8 +13,8 @@ import { Adminonly, verifyUser } from "../middleware/AuthUser.js";
 const router = express.Router();
 
 router.get("/pelatih", getPelatih);
-router.get("/pelatih/id", getPelatihById);
-router.get("/pelatih/uuid/id", getPelatihByuuid);
+router.get("/pelatih/:id", getPelatihById);
+router.get("/pelatih/uuid/:id", getPelatihByuuid);
 router.get("/pelatih/cabor/:id",verifyUser, Adminonly,getPelatihByCabor);
 router.post("/pelatih",verifyUser,createPelatih);
 router.get("/pelatih/:id",verifyUser, Adminonly, updatePelatih);
