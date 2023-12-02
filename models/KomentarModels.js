@@ -27,6 +27,9 @@ const Komentar = db.define("Komentar", {
     id_pelatih : {
         type : DataTypes.STRING
     },
+    uuid_penulis : {
+        type : DataTypes.STRING,
+    }
 
 
 }, {

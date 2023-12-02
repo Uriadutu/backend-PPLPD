@@ -36,6 +36,29 @@ export const getKomenByForum = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+export const getKomenByuuid = async (req, res) => {
+  try {
+    const response = await Komentar.findAll({
+      where: {
+        uuid_penulis: req.params.id,
+      },
+      include: [
+        {
+          model: ForumCabor,
+        },
+        {
+          model: Atlet,
+        },
+        {
+          model: Pelatih,
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 export const getKomenByAtlet = async (req, res) => {
   try {
     const response = await Komentar.findAll({
@@ -61,7 +84,7 @@ export const getKomenByAtlet = async (req, res) => {
 };
 
 export const createKomentar = async (req, res) => {
-  const { id_forumCabor, isi_komen } = req.body;
+  const { id_forumCabor, isi_komen, uuid_penulis } = req.body;
   try {
     let id_pelatih = null;
     let id_atlet = null;
@@ -78,6 +101,7 @@ export const createKomentar = async (req, res) => {
 
     await Komentar.create({
       id_forumCabor: id_forumCabor,
+      uuid_penulis : uuid_penulis,
       id_atlet: id_atlet,
       id_pelatih: id_pelatih,
       isi_komen: isi_komen,
