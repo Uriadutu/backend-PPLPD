@@ -2,6 +2,7 @@ import Atlet from "../models/Atletmodels.js";
 import ForumCabor from "../models/ForumCaborModels.js";
 import Komentar from "../models/KomentarModels.js";
 import Pelatih from "../models/Pelatihmodels.js";
+import { Op } from "sequelize";
 
 export const getKomentar = async (req, res) => {
   try {
@@ -17,6 +18,29 @@ export const getKomenByForum = async (req, res) => {
     const response = await Komentar.findAll({
       where: {
         id_ForumCabor: req.params.id,
+      },
+      include: [
+        {
+          model: ForumCabor,
+        },
+        {
+          model: Atlet,
+        },
+        {
+          model: Pelatih,
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+export const getKomenByAtlet = async (req, res) => {
+  try {
+    const response = await Komentar.findAll({
+      where: {
+        [Op.or]: [{ id_atlet: req.params.id }, { id_pelatih: req.params.id }],
       },
       include: [
         {

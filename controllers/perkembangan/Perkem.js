@@ -53,7 +53,7 @@ export const getPerkembanganByAtlet = async (req, res) => {
         attributes : ["namaIndikator"],
         include :[{
           model : Komponen,
-          attributes : ["id_komponen", "namaKomponen"]
+          attributes : ["id_komponen", "namaKomponen", "periode"]
         }]
       }
     ]

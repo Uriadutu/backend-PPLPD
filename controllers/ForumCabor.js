@@ -1,7 +1,7 @@
 import Atlet from "../models/Atletmodels.js";
 import ForumCabor from "../models/ForumCaborModels.js";
 import Pelatih from "../models/Pelatihmodels.js";
-
+import { Op } from "sequelize";
 export const getForumCabor = async (req, res) => {
   try {
     const response = await ForumCabor.findAll();
@@ -16,6 +16,30 @@ export const getForumCaborbyCabor = async (req, res) => {
       where: {
         id_cabor: req.params.id,
       },
+      include: [
+        {
+          model: Atlet,
+        },
+        {
+          model: Pelatih,
+        },
+      ],
+    });
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+export const getForumCaborbyAtlet = async (req, res) => {
+  try {
+    const response = await ForumCabor.findAll({
+     where: {
+  [Op.or]: [
+    { id_atlet: req.params.id },
+    { id_pelatih: req.params.id }
+  ]
+},
       include: [
         {
           model: Atlet,
@@ -67,7 +91,23 @@ export const createForumCabor = async (req, res) => {
   }
 };
 
-export const deleteForumCabor = async (req, res) => {};
+export const deleteForumCabor = async (req, res) => {
+  try {
+    const forum = await ForumCabor.findOne({
+      where : {
+        id_ForumCabor : req.params.id
+      },
+    })
+    if(!forum) {
+      return res.status(404).json({msg : "Data tidak ditemukan"})
+    };
+
+    await forum.destroy();
+    res.status(200).json({msg : "data berhasil dihapus"});
+  } catch (error) {
+    res.status(500).json({msg : error.message});    
+  }
+};
 
 export const countForumByCabor = async (req, res) => {
   try {
