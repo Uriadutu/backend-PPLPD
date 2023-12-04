@@ -24,10 +24,15 @@ const ForumCabor = db.define(
       },
     },
     isi_forum: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true,
+        checkTextLength(value) {
+          if (value.length > 50000) {
+            throw new Error("Panjang pesan melebihi batas maksimum");
+          }
+        },
       },
     },
   },

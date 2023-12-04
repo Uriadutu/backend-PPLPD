@@ -42,6 +42,13 @@ const Perkembangan = db.define(
         notEmpty: true,
       },
     },
+    datahapus : {
+      type : DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    }
   },
   {
     freezeTableName: true,
