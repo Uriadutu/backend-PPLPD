@@ -1,11 +1,32 @@
+import Cabor from "../models/Cabormodels.js";
 import Club from "../models/ClubModels.js";
+
+export const getClubbyId =async (req, res) => {
+    try {
+        const response = await Club.findOne({
+            where : {
+                id_club : req.params.id
+            },
+            include : [{
+                    model : Cabor,
+                }]
+        })
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({msh : "Data tidak ditemukan"});
+        
+    }
+}
 export const getClubbyCabor = async (req, res) => {
     try {
         const response = await Club.findAll(
             {
                 where : {
                     id_cabor : req.params.id
-                }
+                },
+                include : [{
+                    model : Cabor,
+                }]
             }
         );
         res.status(200).json(response);
