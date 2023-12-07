@@ -194,7 +194,7 @@ export const createPelatih = async (req, res) => {
         .join(""); // Menggabungkan karakter-karakter pertama
     };
     const initials = getInitials(name_awal.toLowerCase());
-    const Passing = initials + nama_akhir.toLowerCase() + tahun_daftar.slice(-2) + noDaftar;
+    const Passing = initials + nama_akhir.toLowerCase() + noDaftar + 1;
     const hashPassword = await argon2.hash(Passing);
     const PW = Passing;
 
@@ -303,7 +303,7 @@ export const createPelatih = async (req, res) => {
             No_daftar: noDaftar,
             id_cabor: id_cabor,
             id_admin: req.userId,
-            username: id_cabor + tahun_daftar.slice(-2) + noDaftar,
+            username: id_cabor + tahun_daftar.slice(-1) + noDaftar + 1,
             id_pelatih: tahun_daftar.slice(-2) + id_cabor + noDaftar,
             password: hashPassword,
             nama: name_awal + " " + nama_tengah + " " + nama_akhir,
@@ -312,7 +312,7 @@ export const createPelatih = async (req, res) => {
 
           res.status(200).json({ msg: "Data berhasil ditambahkan" });
         } catch (error) {
-          res.status(500).json({ msg: "Internal Server Error" });
+          res.status(500).json({ msg: "Lengkapi Field Yang Diperlukan" });
         }
       }
     });

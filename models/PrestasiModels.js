@@ -16,6 +16,9 @@ const Prestasi = db.define("Prestasi", {
     namaClub : {
         type : DataTypes.STRING,
     },
+    Tingkat : {
+        type : DataTypes.STRING,
+    },
     namaEvent : {
         type : DataTypes.STRING,
     },

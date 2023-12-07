@@ -1,5 +1,7 @@
 import LisensiPelatih from "../models/LisensiPelatihModels.js";
 import path from "path"
+import Pelatih from "../models/Pelatihmodels.js";
+import fs from "fs"
 export const getLisensiPelatih = async (req, res) => {
     try {
         const response = await LisensiPelatih.findAll();
@@ -14,7 +16,12 @@ export const getLisensiPelatihbyIDPelatih= async (req, res) => {
         const response = await LisensiPelatih.findAll({
             where: {
                 id_pelatih: req.params.idPelatih
-            }
+            },
+            include : [{
+              model : Pelatih
+            }]
+
+
         });
         res.status(200).json(response);
     } catch (error) {
@@ -69,6 +76,20 @@ export const createLisensiPelatih = async (req, res) => {
 }
 
 export const deleteLisensiPelatih = async (req, res) => {
-    
+    const panduan = await LisensiPelatih.findOne({
+      where: {
+        id_Lisensi: req.params.id,
+      },
+    });
+    if (!panduan) return res.status(404).json({ msg: "No Data Found" });
+
+    try {
+      const filepath = `./public/lisensi/${panduan.file}`;
+      fs.unlinkSync(filepath);
+      await panduan.destroy();
+      res.status(200).json({ msg: "Lisensi Deleted Successfuly" });
+    } catch (error) {
+      console.log(error.message);
+    }
 }
 

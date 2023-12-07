@@ -28,6 +28,7 @@ import CLubAtletRouter from "./routes/ClubAtletRoute.js"
 import LisensiPelatihRoute from "./routes/PelatihLisensiRouter.js"
 import ForumCaborRoute from "./routes/ForumCaborRoute.js"
 import KomentarRoute from "./routes/KomentarRoute.js"
+import PrestasiPelatihRoute from "./routes/PrestasiPelatihRoute.js"
 dotenv.config();
 
 const app = express();
@@ -83,6 +84,7 @@ app.use(CLubAtletRouter);
 app.use(ForumCaborRoute)
 app.use(LisensiPelatihRoute)
 app.use(KomentarRoute)  
+app.use(PrestasiPelatihRoute)
 
 // store.sync();
 

@@ -36,7 +36,12 @@ const Pelatih = db.define(
     },
 
     tahun_daftar: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notEmpty : true,
+        len : [4,4]
+      }
     },
     No_daftar: {
       type: DataTypes.STRING,
