@@ -14,7 +14,7 @@ const Latihan = db.define( "Latihan", {
     },
     id_cabor : DataTypes.INTEGER,
 
-    id_komponen : DataTypes.INTEGER,
+    id_komponen : DataTypes.STRING,
 
     namaLatihan : {
     type : DataTypes.STRING,

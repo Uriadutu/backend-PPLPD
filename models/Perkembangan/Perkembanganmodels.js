@@ -2,7 +2,6 @@ import { Sequelize } from "sequelize";
 import db from "../../config/Database.js";
 import Indikator from "./IndikatorModels.js";
 import Atlet from "../Atletmodels.js";
-import Komponen from "./KomponenModels.js";
 
 const {DataTypes} = Sequelize;
 
@@ -59,7 +58,4 @@ Indikator.hasMany(Perkembangan);
 Perkembangan.belongsTo(Indikator, {foreignKey : "id_indikator"});
 Atlet.hasMany(Perkembangan);
 Perkembangan.belongsTo(Atlet, {foreignKey : "id_atlet"});
-Komponen.hasMany(Perkembangan);
-Perkembangan.belongsTo(Komponen, {foreignKey : "id_komponen"});
-
 export default Perkembangan;

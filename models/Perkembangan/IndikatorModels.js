@@ -12,7 +12,7 @@ const Indikator = db.define("Indikator", {
         autoIncrement : true,
     },
     id_komponen : {
-        type : DataTypes.INTEGER,
+        type : DataTypes.STRING,
     },
     id_cabor : {
         type : DataTypes.INTEGER,

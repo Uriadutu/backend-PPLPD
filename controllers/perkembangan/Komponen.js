@@ -86,12 +86,12 @@ export const getKomponenByPeriodeAndCabor = async (req, res) => {
 
 export const CreateKomponen = async(req, res) => {
     try {
-        const {id_komponen, id_cabor, namaKomponen, periode} = req.body;
+        const {id_cabor, namaKomponen, periode} = req.body;
         await Komponen.create({
-            id_komponen : id_komponen,
-            id_cabor : id_cabor,
-            namaKomponen : namaKomponen,
-            periode : periode.slice(0, -3),
+          id_komponen: id_cabor + namaKomponen + periode.slice(0, -3),
+          id_cabor: id_cabor,
+          namaKomponen: namaKomponen + periode.slice(0, -3),
+          periode: periode.slice(0, -3),
         });
         res.status(200).json({msg : "data berhasil ditambahkan"})
         
@@ -99,6 +99,7 @@ export const CreateKomponen = async(req, res) => {
         res.status(404).json({ msg: "Data Tidak Dapat DiBuat" });        
     }
 }
+
 
 export const DeleteKomponen = async (req, res) => {
   try {

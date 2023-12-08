@@ -47,6 +47,23 @@ export const createClub = async (req, res) => {
     }
 }
 
-export const deleteClub = async (req, res) => {}
+export const deleteClub = async (req, res) => {
+    try {
+        const club = await Club.findOne({
+            where : {
+                id_club : req.params.id,
+            }
+
+        })
+        if(!club) {
+            res.status(200).json({msg : "data tidak ditemukan"})
+
+        }
+        await club.destroy();
+    } catch (error) {
+        res.status(404).json({msg : "Data Gagal Dihapus"})
+        
+    }
+}
 
 export const updateClub = async (req, res) => {}

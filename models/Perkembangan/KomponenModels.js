@@ -9,9 +9,8 @@ const Komponen = db.define(
   "Komponen",
   {
     id_komponen: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
     },
     id_cabor: {
       type: DataTypes.INTEGER,
