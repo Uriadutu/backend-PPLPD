@@ -26,6 +26,51 @@ export const getAtlet = async (req, res) => {
   }
 };
 
+export const getAtletbyclubnol = async (req, res) => {
+  try {
+    const response = await Atlet.findAll({
+      where : {
+        club : req.params.club,
+      },
+      include: [
+        {
+          model: Cabor,
+          attributes: ["id_cabor", "namaCabor", "kodeCabor"],
+        },
+        {
+          model: Admin,
+          attributes: ["id_admin", "nama"],
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+export const getAtletbyclubisi = async (req, res) => {
+  try {
+    const response = await Atlet.findAll({
+    where : {
+      club : req.params.club
+    },
+      include: [
+        {
+          model: Cabor,
+          attributes: ["id_cabor", "namaCabor", "kodeCabor"],
+        },
+        {
+          model: Admin,
+          attributes: ["id_admin", "nama"],
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
 export const getAtletbyCabor = async (req, res) => {
   try {
     const response = await Atlet.findAll({
@@ -151,88 +196,7 @@ export const countAtletByCabor = async (req, res) => {
 export const getAtletByuuid = async (req, res) => {
   try {
     const response = await Atlet.findOne({
-      attributes: [
-        "id_atlet",
-        "uuid",
-        "nama",
-        "Pass",
-        "url",
-        "gambar",
-        "id_cabor",
-        "tahun_daftar",
-        "name_awal",
-        "nama_tengah",
-        "status",
-        "nama_akhir",
-        "username",
-        "role",
-        "nama_panggil",
-        "tgl_lahir",
-        "tmp_lahir",
-        "agama",
-        "nama_jalan",
-        "desa",
-        "kelurahan",
-        "kecamatan",
-        "kota",
-        "provinsi",
-        "no_telp",
-        "hp_mobile",
-        "email",
-        "kelamin",
-        "gol_darah",
-        "tinggi_badan",
-        "berat_badan",
-        "pendidikan",
-        "pend_terakhir",
-        "nama_sklh",
-        "alumni",
-        "tahun_lulus",
-        "ukuran_baju",
-        "ukuran_sepatu",
-        "nama_ayah",
-        "tmpLahir_ayah",
-        "tglLahir_ayah",
-        "agama_ayah",
-        "pekerjaan_ayah",
-        "noHp_ayah",
-        "notlp_ayah",
-        "email_ayah",
-        "nama_ibu",
-        "tmpLahir_ibu",
-        "tglLahir_ibu",
-        "agama_ibu",
-        "pekerjaan_ibu",
-        "noHp_ibu",
-        "notlp_ibu",
-        "email_ibu",
-        "provinsi_ortu",
-        "kota_ortu",
-        "kecamatan_ortu",
-        "kelurahan_ortu",
-        "desa_ortu",
-        "namaJalan_ortu",
-        "nama_wali",
-        "hubkeluarga_wali",
-        "tempLahir_wali",
-        "tglLahir_wali",
-        "agama_wali",
-        "jeniskelamin_wali",
-        "pekerjaan_wali",
-        "noHp_wali",
-        "notlp_wali",
-        "email_wali",
-        "provinsi_wali",
-        "kota_wali",
-        "kecamatan_wali",
-        "kelurahan_wali",
-        "desa_wali",
-        "namaJalan_wali",
-        "nama_club",
-        "nama_event",
-        "tahun_prestasi",
-        "capai_prestasi",
-      ],
+      
       where: {
         uuid: req.params.id,
       },
@@ -256,88 +220,7 @@ export const getAtletByuuid = async (req, res) => {
 export const getAtletById = async (req, res) => {
   try {
     const response = await Atlet.findOne({
-      attributes: [
-        "id_atlet",
-        "uuid",
-        "nama",
-        "Pass",
-        "url",
-        "gambar",
-        "id_cabor",
-        "tahun_daftar",
-        "name_awal",
-        "nama_tengah",
-        "status",
-        "nama_akhir",
-        "username",
-        "role",
-        "nama_panggil",
-        "tgl_lahir",
-        "tmp_lahir",
-        "agama",
-        "nama_jalan",
-        "desa",
-        "kelurahan",
-        "kecamatan",
-        "kota",
-        "provinsi",
-        "no_telp",
-        "hp_mobile",
-        "email",
-        "kelamin",
-        "gol_darah",
-        "tinggi_badan",
-        "berat_badan",
-        "pendidikan",
-        "pend_terakhir",
-        "nama_sklh",
-        "alumni",
-        "tahun_lulus",
-        "ukuran_baju",
-        "ukuran_sepatu",
-        "nama_ayah",
-        "tmpLahir_ayah",
-        "tglLahir_ayah",
-        "agama_ayah",
-        "pekerjaan_ayah",
-        "noHp_ayah",
-        "notlp_ayah",
-        "email_ayah",
-        "nama_ibu",
-        "tmpLahir_ibu",
-        "tglLahir_ibu",
-        "agama_ibu",
-        "pekerjaan_ibu",
-        "noHp_ibu",
-        "notlp_ibu",
-        "email_ibu",
-        "provinsi_ortu",
-        "kota_ortu",
-        "kecamatan_ortu",
-        "kelurahan_ortu",
-        "desa_ortu",
-        "namaJalan_ortu",
-        "nama_wali",
-        "hubkeluarga_wali",
-        "tempLahir_wali",
-        "tglLahir_wali",
-        "agama_wali",
-        "jeniskelamin_wali",
-        "pekerjaan_wali",
-        "noHp_wali",
-        "notlp_wali",
-        "email_wali",
-        "provinsi_wali",
-        "kota_wali",
-        "kecamatan_wali",
-        "kelurahan_wali",
-        "desa_wali",
-        "namaJalan_wali",
-        "nama_club",
-        "nama_event",
-        "tahun_prestasi",
-        "capai_prestasi",
-      ],
+      
       where: {
         id_atlet: req.params.id,
       },
@@ -487,6 +370,7 @@ export const createAtlet = async (req, res) => {
             await Atlet.create({
               name_awal: name_awal,
               status: status,
+              club : id_cabor + "0",
               gambar: fileName,
               url: url,
               nama_tengah: nama_tengah,
@@ -675,7 +559,7 @@ export const updateAtlet = async (req, res) => {
       kelurahan_wali,
       desa_wali,
       namaJalan_wali,
-      password
+      club
     } = req.body;
     // let Passing = name_awal + tahun_daftar.slice(-2) + atlet.No_daftar;
 
@@ -707,6 +591,7 @@ export const updateAtlet = async (req, res) => {
         {
           name_awal: name_awal,
           status: status,
+          club : club,
           gambar: fileName,
           url: url,
           nama_tengah: nama_tengah,

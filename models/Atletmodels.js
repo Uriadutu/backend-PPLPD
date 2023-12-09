@@ -16,6 +16,9 @@ const Atlet = db.define(
       type : DataTypes.STRING,
       defaultValue: "aktif",
     },
+    club : {
+      type : DataTypes.STRING,
+    },
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
