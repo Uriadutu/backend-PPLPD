@@ -241,6 +241,40 @@ export const getAtletById = async (req, res) => {
   }
 };
 
+export const countAtletByGenderAndCabor = async (req, res) => {
+  const { id } = req.params; // Ambil ID cabang olahraga dari parameter
+
+  try {
+    const atletByGenderAndCabor = await Atlet.findAll({
+      where: {
+        id_cabor: id, // Sesuaikan dengan properti ID Cabor pada model Atlet Anda
+      },
+      attributes: ["kelamin"],
+    });
+
+    // Objek untuk menyimpan jumlah atlet per jenis kelamin
+    const countAtletPerGender = {
+      Laki_Laki: 0,
+      Perempuan: 0,
+    };
+
+    // Menghitung jumlah atlet per jenis kelamin
+    atletByGenderAndCabor.forEach((atlet) => {
+      const jenisKelamin = atlet.kelamin;
+
+      if (jenisKelamin === "Laki-Laki") {
+        countAtletPerGender.Laki_Laki++;
+      } else if (jenisKelamin === "Perempuan") {
+        countAtletPerGender.Perempuan++;
+      }
+    });
+
+    res.status(200).json(countAtletPerGender);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const createAtlet = async (req, res) => {
   try {
     const {

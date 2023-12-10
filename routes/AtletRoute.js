@@ -10,12 +10,14 @@ import {
   getAtletByuuid,
   getAtletbyclubnol,
   getAtletbyclubisi,
+  countAtletByGenderAndCabor,
 } from "../controllers/Atlet.js";
 import { Adminonly, verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
 router.get("/cabor/atlet/:id", getAtletbyCabor);
+router.get("/atlet/countByGenderAndCabor/:id", countAtletByGenderAndCabor);
 router.get("/atlet/countByCabor", countAtletByCabor);
 router.get("/atlet/club/nol/:club", getAtletbyclubnol);
 router.get("/atlet/club/isi/:club", getAtletbyclubisi);
