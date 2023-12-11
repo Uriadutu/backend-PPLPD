@@ -37,11 +37,11 @@ const Pelatih = db.define(
 
     tahun_daftar: {
       type: DataTypes.INTEGER,
-      allowNull : false,
-      validate : {
-        notEmpty : true,
-        len : [4,4]
-      }
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [4, 4],
+      },
     },
     No_daftar: {
       type: DataTypes.STRING,
@@ -128,7 +128,7 @@ const Pelatih = db.define(
     pendidikan: {
       type: DataTypes.STRING,
     },
-    
+
     nama_sklh: {
       type: DataTypes.STRING,
     },
@@ -150,7 +150,9 @@ const Pelatih = db.define(
     nama_ayah: {
       type: DataTypes.TEXT,
     },
-
+    status_ayah: {
+      type: DataTypes.TEXT,
+    },
     tmpLahir_ayah: {
       type: DataTypes.TEXT,
     },
@@ -184,6 +186,9 @@ const Pelatih = db.define(
     nama_ibu: {
       type: DataTypes.TEXT,
     },
+    status_ibu: {
+      type: DataTypes.TEXT,
+    },
 
     tmpLahir_ibu: {
       type: DataTypes.TEXT,
@@ -213,7 +218,7 @@ const Pelatih = db.define(
       type: DataTypes.TEXT,
     },
 
-    //ortu
+    //ortu = ayah
 
     provinsi_ortu: {
       type: DataTypes.TEXT,
@@ -236,6 +241,31 @@ const Pelatih = db.define(
     },
 
     namaJalan_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    // ibu = ibu
+    provinsi_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kota_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kecamatan_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kelurahan_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    desa_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    namaJalan_ibu: {
       type: DataTypes.TEXT,
     },
 

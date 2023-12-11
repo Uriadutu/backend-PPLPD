@@ -12,12 +12,12 @@ const Atlet = db.define(
       type: DataTypes.STRING,
       primaryKey: true,
     },
-    status : {
-      type : DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
       defaultValue: "aktif",
     },
-    club : {
-      type : DataTypes.STRING,
+    club: {
+      type: DataTypes.STRING,
     },
     uuid: {
       type: DataTypes.STRING,
@@ -27,7 +27,7 @@ const Atlet = db.define(
       type: DataTypes.STRING,
     },
     // INI BATAS BARU
-    id_admin :DataTypes.STRING,
+    id_admin: DataTypes.STRING,
     id_cabor: {
       type: DataTypes.INTEGER,
     },
@@ -150,6 +150,9 @@ const Atlet = db.define(
     nama_ayah: {
       type: DataTypes.TEXT,
     },
+    status_ayah: {
+      type: DataTypes.TEXT,
+    },
 
     tmpLahir_ayah: {
       type: DataTypes.TEXT,
@@ -184,6 +187,9 @@ const Atlet = db.define(
     nama_ibu: {
       type: DataTypes.TEXT,
     },
+    status_ibu: {
+      type: DataTypes.TEXT,
+    },
 
     tmpLahir_ibu: {
       type: DataTypes.TEXT,
@@ -213,7 +219,7 @@ const Atlet = db.define(
       type: DataTypes.TEXT,
     },
 
-    //ortu
+    //ortu = ayah
 
     provinsi_ortu: {
       type: DataTypes.TEXT,
@@ -236,6 +242,31 @@ const Atlet = db.define(
     },
 
     namaJalan_ortu: {
+      type: DataTypes.TEXT,
+    },
+
+    // ibu = ibu
+    provinsi_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kota_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kecamatan_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    kelurahan_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    desa_ibu: {
+      type: DataTypes.TEXT,
+    },
+
+    namaJalan_ibu: {
       type: DataTypes.TEXT,
     },
 
