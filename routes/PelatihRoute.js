@@ -15,9 +15,9 @@ const router = express.Router();
 router.get("/pelatih", getPelatih);
 router.get("/pelatih/:id", getPelatihById);
 router.get("/pelatih/uuid/:id", getPelatihByuuid);
-router.get("/pelatih/cabor/:id",verifyUser, Adminonly,getPelatihByCabor);
+router.get("/pelatih/cabor/:id",verifyUser,getPelatihByCabor);
 router.post("/pelatih",verifyUser,createPelatih);
-router.get("/pelatih/:id",verifyUser, Adminonly, updatePelatih);
-router.delete("/pelatih/:id",verifyUser, Adminonly, deletePelatih);
+router.patch("/pelatih/:id",verifyUser, updatePelatih);
+router.delete("/pelatih/:id",verifyUser, deletePelatih);
 
 export default router;

@@ -40,6 +40,11 @@ const Atlet = db.define(
 
     tahun_daftar: {
       type: DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notEmpty : true,
+        len : [4, 4],
+      } 
     },
     No_daftar: {
       type: DataTypes.STRING,
