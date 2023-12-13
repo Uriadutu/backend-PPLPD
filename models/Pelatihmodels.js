@@ -16,6 +16,10 @@ const Pelatih = db.define(
       type: DataTypes.STRING,
       defaultValue: "Aktif",
     },
+    club: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
@@ -49,100 +53,100 @@ const Pelatih = db.define(
     },
     // INI LAGI
     name_awal: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     nama_tengah: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     nama_akhir: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     nama_panggil: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     tgl_lahir: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     tmp_lahir: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     agama: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     nama_jalan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     desa: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     kelurahan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     kecamatan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     kota: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     provinsi: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     no_telp: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     hp_mobile: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     kelamin: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     gol_darah: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     tinggi_badan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     berat_badan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     // pendidikan
 
     pendidikan: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     nama_sklh: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
-    pend_terakhir: DataTypes.STRING,
-    alumni: DataTypes.STRING,
+    pend_terakhir: DataTypes.TEXT,
+    alumni: DataTypes.TEXT,
 
-    tahun_lulus: DataTypes.STRING,
+    tahun_lulus: DataTypes.TEXT,
 
     ukuran_baju: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     ukuran_sepatu: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
 
     //data ortu

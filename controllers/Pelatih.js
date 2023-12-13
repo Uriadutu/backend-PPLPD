@@ -47,6 +47,28 @@ export const getPelatihById = async (req, res) => {
         res.status(404).json({msg : "Datat tidak ditemukan"})
     }
 };
+export const getPelatihByclub = async (req, res) => {
+    try {
+        const response = await Pelatih.findAll({
+          where: {
+            club: req.params.id,
+          },
+          include: [
+            {
+              model: Cabor,
+              attributes: ["namaCabor"],
+            },
+            {
+              model: Admin,
+              attributes: ["nama"],
+            },
+          ],
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({msg : "Datat tidak ditemukan"})
+    }
+};
 export const getPelatihByuuid = async (req, res) => {
     try {
         const response = await Pelatih.findOne({
@@ -99,6 +121,7 @@ export const createPelatih = async (req, res) => {
       name_awal,
       id_cabor,
       status,
+      club,
       No_daftar,
       tahun_daftar,
       nama_akhir,
@@ -238,6 +261,7 @@ export const createPelatih = async (req, res) => {
           await Pelatih.create({
             name_awal: name_awal,
             status: status,
+            club : id_cabor + "0",
             gambar: fileName,
             url: url,
             nama_tengah: nama_tengah,
@@ -451,18 +475,12 @@ export const updatePelatih = async (req, res) => {
   const noDaftar = atlet.No_daftar;
 
   // Gabungkan string dengan menggunakan template literals
- const getInitials = (str) => {
-      return str
-        ?.split(" ")
-        .map((word) => word.charAt(0)) // Mengambil karakter pertama dari setiap kata
-        .join(""); // Menggabungkan karakter-karakter pertama
-    };
+
     const namaKecil = nama_akhir
       ? nama_akhir.toLowerCase()
       : atlet.nama_akhir.toLowerCase();
-    const initials = atlet.name_awal.slice(1) 
-    ? getInitials(name_awal?.toLowerCase())
-    : name_awal.slice(1);
+
+    const initials = atlet.name_awal[0].toLowerCase()
     const Passing = initials + namaKecil + noDaftar + 1;
     const hashPassword = await argon2.hash(Passing);
     const PW = Passing;

@@ -431,7 +431,7 @@ export const createAtlet = async (req, res) => {
 
             res.status(200).json({ msg: "Data berhasil ditambahkan" });
           } catch (error) {
-            res.status(500).json({ msg: "Internal Server Error" });
+            res.status(500).json({ msg: "Isi semua field yang wajib" });
           }
         }
       });
@@ -665,7 +665,7 @@ export const updateAtlet = async (req, res) => {
           },
         }
       );
-      res.status(200).json({ msg: "Informasi Pejabat berhasil diupdate" });
+      res.status(200).json({ msg: "Data berhasil diupdate" });
     } catch (error) {
       console.log(error.message);
     }
