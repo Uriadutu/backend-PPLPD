@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize";
 
-const db = new Sequelize('pplpd', 'root', '', {
+const db = new Sequelize('pplpd_sim', 'root', '', {
     host: "localhost",
     dialect: "mysql"
 });

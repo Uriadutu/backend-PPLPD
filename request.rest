@@ -1,6 +1,6 @@
 ###
 // get semua admin
-GET http://localhost:5000/program/11
+GET http://localhost:5000/admin
 Content-Type: application/json
 
 ###
