@@ -90,5 +90,5 @@ app.use(PrestasiPelatihRoute)
 
 app.listen(process.env.APP_PORT, ()=> {
 
-    console.log('Server Aman.. Semangat boleh, Istirahat jangan lupa');
+    console.log('Server Running');
 });
